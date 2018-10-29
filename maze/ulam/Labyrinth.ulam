@@ -1,0 +1,73 @@
+/** Labyrinth.
+\symbol La
+\color #999
+\author Isaac Clarke
+\symmetries all
+\license lgpl
+*/
+
+element Labyrinth {
+  EventWindow ew;
+  Random rm;
+  Once once;
+  Fail f;
+
+  Void behave() {
+    Empty e;
+
+    if(once.new()){
+      for(Unsigned(6) i = 1; i <13; i++){
+        if(ew[i] is Labyrinth){
+          ew[0] = e;
+        }
+      }
+
+      if(ew[0] is Labyrinth){
+        Wall w;
+        ew[1] = w;
+        ew[9] = w;
+      }
+    }
+
+    if(ew[0] is Labyrinth){
+      if(ew[1] is Wall && ew[9] is Empty){
+        ew[1] = e;
+      }
+
+      if(ew[1] is Wall && ew[9] is Wall && ew[2] is Wall && ew[10] is Wall && ew[31] is Wall && ew[29] is Wall){
+        ew[1] = e;
+        ew[9] = e;
+      }
+
+      for(Unsigned(6) i = 1; i < 9; i++){
+        if(ew[i] is Labyrinth){
+          ew[i] = e;
+          ew[0] = e;
+        }
+        if(i > 4){
+         if(ew[i] is Wall){
+           ew[i] = e;
+         }
+        }
+      }
+
+
+      Labyrinth l;
+
+      if(ew[23] is Empty){
+        ew[23] = l;
+      }
+      if(ew[24] is Empty){
+        ew[24] = l;
+      }
+      if(ew[21] is Empty){
+        ew[21] = l;
+      }
+      if(ew[22] is Empty){
+        ew[22] = l;
+      }
+    }
+  }
+
+
+}

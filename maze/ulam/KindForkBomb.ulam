@@ -1,0 +1,47 @@
+/** KindForkBomb.
+\symbol KF
+\color #86d8a3
+\author Isaac Clarke
+\license lgpl
+\symmetries all
+*/
+
+element KindForkBomb {
+  EventWindow ew;
+  Unsigned(8) red = 0u;
+  Unsigned(8) blue = 0u;
+  Unsigned(8) green = 0u;
+
+  ARGB getColor(Unsigned selector){
+    ColorUtils cu;
+    ARGB ret = cu.color(0xff00ff00u);
+    ret[1] = red;
+    ret[2] = green;
+    ret[3] = blue;
+    return ret;
+  }
+
+  Void behave() {
+
+    Unsigned(8) rr = (Unsigned(8))(red + 4);
+    Unsigned(8) gg = green;
+    Unsigned(8) bb = blue;
+
+
+    if(rr > 254){
+      rr = 255;
+      bb = (Unsigned(8))(blue + 1);
+    }
+
+
+    if(ew[1] is Empty){
+      KindForkBomb fb;
+      fb.red = rr;
+      fb.green = gg;
+      fb.blue = bb;
+      ew[1] = fb;
+    }
+  }
+
+
+}

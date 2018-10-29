@@ -1,0 +1,40 @@
+= element Maze
+\color  #eee 
+\symbol  Mz
+\symmetries all
+
+
+==  Rules
+given m isa Maze
+change w isa Wall
+
+
+  m@  ->  _@             # remove nearby node 
+
+
+
+  _..@  ->  @..@         # spread nodes
+
+
+    _          .
+    _          .
+  __@__  ->  ww@..       # build wall
+    _          .
+    _          .
+
+
+
+  _w@  -> __@            # remove half walls
+
+
+
+  w       _
+   @  ->   @             # remove diagonals
+
+
+    .          .
+    .          .
+  ..@..  ->  ..@..       # maintain
+    .          .
+    .          .
+

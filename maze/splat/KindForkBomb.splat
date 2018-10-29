@@ -1,0 +1,12 @@
+= element KindForkBomb
+\color  #f00 
+\symbol  Kf
+\symmetries all
+
+
+==  Rules
+
+
+  @_  ->  @@
+
+  @ -> @
